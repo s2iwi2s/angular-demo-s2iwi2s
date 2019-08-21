@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { productMap } from '../products';
+import { productsMap } from '../products';
 
 @Component({
   selector: 'app-product-list',
@@ -8,14 +8,14 @@ import { productMap } from '../products';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent {
-  products = [];
+  products = productsMap;
 
   constructor(){}
   ngOnInit() {
-    function addToList(item){
+    /*function addToList(item){
       this.products.push(item);
     }
-   productMap.forEach(addToList);
+    productsMap.forEach(addToList);*/
     /*productMap.each(function (index, key) {
       window.alert(index + key);
       this.products.push(productMap[key]);      

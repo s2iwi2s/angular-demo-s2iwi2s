@@ -1,11 +1,11 @@
-export const products = [
-  {
+export const productMap = {
+  'Phone_XL': {
     productId: 'Phone_XL', 
     name: 'Phone XL',
     price: 799,
     description: 'A large phone with one of the best screens'
   },
-  {
+  'Phone_Mini' : {
     productId: 'Phone_Mini',
     name: 'Phone Mini',
     price: 699,
@@ -15,13 +15,13 @@ export const products = [
         {id:'2', name:'Display', serial:'AC1-TS123-D41'},
         {id:'3', name:'Audio', serial:'AC1-TS123-D44'}]
   },
-  {
+  'Phone_Standard' : {
     productId: 'Phone_Standard',
     name: 'Phone Standard',
     price: 299,
     description: ''
   }
-];
+};
 
 
 /*

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { products } from '../products';
+import { productMap } from '../products';
 
 @Component({
   selector: 'app-product-list',
@@ -8,7 +8,19 @@ import { products } from '../products';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent {
-  products = products;
+  products = [];
+
+  constructor(){}
+  ngOnInit() {
+    function addToList(item){
+      this.products.push(item);
+    }
+   productMap.forEach(addToList);
+    /*productMap.each(function (index, key) {
+      window.alert(index + key);
+      this.products.push(productMap[key]);      
+    });*/
+  }
 
   share() {
     window.alert('The product has been shared!');

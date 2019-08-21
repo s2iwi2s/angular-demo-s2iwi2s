@@ -1,0 +1,16 @@
+<h2>Product Details</h2>
+
+<div *ngIf="product">
+  <h3>{{ product.name }}</h3>
+  <h4>{{ product.price | currency }}</h4>
+  <p>{{ product.description }}</p>
+
+
+    <ul *ngIf="product.items">Product Items
+      <li *ngFor="let item of product.items">
+        {{item.id}} / {{item.name}}: {{item.serial}}</li>
+    </ul>
+
+    <button (click)="addToCart(product)">Buy</button>
+    
+</div>

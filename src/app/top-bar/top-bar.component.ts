@@ -18,10 +18,6 @@ export class TopBarComponent implements OnInit {
       this.cartCount = this.cartService.getItems().length;
     });
   }
-
-  doUpdateCount(){
-    this.cartCount = this.cartService.getItems().length;
-  }
 }
 
 

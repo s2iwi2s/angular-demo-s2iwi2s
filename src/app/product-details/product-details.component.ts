@@ -13,7 +13,7 @@ import { CartService } from '../service/cart.service';
 export class ProductDetailsComponent implements OnInit {
   product;
   productForm;
-
+  
   constructor(
     private route: ActivatedRoute,
     private cartService: CartService,
@@ -22,43 +22,35 @@ export class ProductDetailsComponent implements OnInit {
     }
 
   ngOnInit() {
+    var productsMap = Object.fromEntries(
+      products.map(obj => [obj.productId, obj])
+    )
+    //console.warn('productsMap==>', productsMap);
+
     this.route.paramMap.subscribe(params => {
-        this.product = this.getProduct(params.get('productId'));
+        this.product = productsMap[params.get('productId')];
     });
+    console.warn('this.product==>', this.product);
     this.productForm = this.formBuilder.group({
       productId: this.product.productId,
       name: this.product.name,
       price: this.product.price,
       description: this.product.description
     });
-    /*
-    productId: 'Phone_XL', 
-    name: 'Phone XL',
-    price: 799,
-    description: 'A large phone with one of the best screens'
-    */
-  }
-  getProduct(productId) {
-    var productsMap = Object.fromEntries(
-      products.map(obj => [obj.productId, obj])
-    )
-
-    var p =  productsMap[productId];
-    //window.alert('product found ' + p)
-    return p;
+    console.warn('this.productForm==>', this.productForm);
   }
   
   addToCart(product) {
     window.alert('Your product has been added to the cart!');
     this.cartService.addToCart(product);
   }
+  
   onSubmit(productData){
     for(var key in productData){
       this.product[key] = productData[key];
     }
     
-    window.alert('The product has been saved!');
-    
     console.warn('The product has been saved', this.product);
+    window.alert('The product has been saved!');
   }
 }

@@ -1,12 +1,12 @@
 export const products = [
   {
-    productId: 'Phone_XL', 
+    productId: '1', 
     name: 'Phone XL',
     price: 799,
     description: 'A large phone with one of the best screens'
   },
   {
-    productId: 'Phone_Mini',
+    productId: '2',
     name: 'Phone Mini',
     price: 699,
     description: 'A great phone with one of the best cameras',
@@ -16,7 +16,7 @@ export const products = [
         {id:'3', name:'Audio', serial:'AC1-TS123-D44'}]
   },
   {
-    productId: 'Phone_Standard',
+    productId: '3',
     name: 'Phone Standard',
     price: 299,
     description: ''

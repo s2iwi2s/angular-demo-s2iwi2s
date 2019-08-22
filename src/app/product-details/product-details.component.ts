@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
@@ -13,44 +13,82 @@ import { CartService } from '../service/cart.service';
 export class ProductDetailsComponent implements OnInit {
   product;
   productForm;
-  
+  formAction;
+  lastProductId = 0;
+
   constructor(
     private route: ActivatedRoute,
     private cartService: CartService,
-    private formBuilder: FormBuilder,) {
-      
-    }
+    //private topBarComponent: TopBarComponent, 
+    private formBuilder: FormBuilder) {
+  }
 
   ngOnInit() {
-    var productsMap = Object.fromEntries(
-      products.map(obj => [obj.productId, obj])
-    )
-    //console.warn('productsMap==>', productsMap);
+    var lpid = 0;
+    var productsMap = {};
+    function createProductsMap(obj, idx){
+      productsMap[obj.productId] = obj;
+      lpid = obj.productId;
+    }
+
+    products.forEach(function(obj, idx){
+      productsMap[obj.productId] = obj;
+      lpid = obj.productId;
+    });
+    this.lastProductId = lpid;
 
     this.route.paramMap.subscribe(params => {
         this.product = productsMap[params.get('productId')];
     });
-    console.warn('this.product==>', this.product);
+    
+    if(this.product){
+      this.formAction = 'Update';
+      this.setProductForm();
+    }else{
+      this.createNewProduct();
+    }
+  }
+
+  setProductForm(){
     this.productForm = this.formBuilder.group({
       productId: this.product.productId,
       name: this.product.name,
       price: this.product.price,
-      description: this.product.description
+      description: this.product.description,
+      formAction: this.product.formAction
     });
-    console.warn('this.productForm==>', this.productForm);
   }
   
   addToCart(product) {
-    window.alert('Your product has been added to the cart!');
     this.cartService.addToCart(product);
+    window.alert('Your product has been added to the cart!');
   }
-  
+
   onSubmit(productData){
     for(var key in productData){
       this.product[key] = productData[key];
     }
+    if(productData.formAction == 'New'){
+      products.push(this.product);
+    }
     
     console.warn('The product has been saved', this.product);
     window.alert('The product has been saved!');
+  }
+  onNewProduct(){
+    this.createNewProduct();
+  }
+  
+  createNewProduct(){
+    this.formAction = 'New';
+    this.lastProductId++;
+    
+    this.product = {
+      productId: this.lastProductId,
+      name: '',
+      price: '',
+      description: ''
+    };
+    this.setProductForm();
   }
 }

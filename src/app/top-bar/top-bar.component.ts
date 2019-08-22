@@ -14,11 +14,10 @@ export class TopBarComponent implements OnInit {
 
   ngOnInit() {
     this.cartService.change.subscribe(items => {
-      this.cartCount = this.cartService.items.length;
+      this.cartCount = this.cartService.getCartCount();
     });
   }
 }
-
 
 /*
 Copyright Google LLC. All Rights Reserved.

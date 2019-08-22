@@ -1,12 +1,12 @@
 
-
 <a [routerLink]="['/']">
   <h1>Dashboard</h1>
 </a>
 
-<a [routerLink]="['/cart']" class="button fancy-button">
-<i class="material-icons">shopping_cart</i>
-<b>Checkout</b>({{cartCount}})
+<a [routerLink]="['/cart']" class="button fancy-button"  >
+  <i class="material-icons" [matBadge]="cartCount" matBadgePosition="after"  matBadgeOverlap="false" matBadgeColor="accent">shopping_cart</i>
+  
+  <b>Checkout</b>
 </a>
 
 <!-- 

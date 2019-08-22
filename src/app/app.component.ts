@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MatGridListModule } from '@angular/material/grid-list'
+import { NgModule } from '@angular/core';
 
 @Component({
   selector: 'app-root',

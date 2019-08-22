@@ -17,6 +17,10 @@ export class CartService {
     this.change.emit(this.items);
   }
 
+  removeToCart(idx){
+    this.items.splice(idx, 1);
+  }
+
   getItems() {
     return this.items;
   }

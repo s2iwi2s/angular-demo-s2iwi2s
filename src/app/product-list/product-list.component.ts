@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { productsMap } from '../products';
+import { products } from '../products';
 
 @Component({
   selector: 'app-product-list',
@@ -8,7 +8,7 @@ import { productsMap } from '../products';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent {
-  products = productsMap;
+  products = products;
 
   constructor(){}
   ngOnInit() {

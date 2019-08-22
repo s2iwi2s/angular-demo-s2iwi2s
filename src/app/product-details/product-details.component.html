@@ -11,6 +11,36 @@
         {{item.id}} / {{item.name}}: {{item.serial}}</li>
     </ul>
 
-    <button (click)="addToCart(product)">Buy</button>
+    
     
 </div>
+
+<form [formGroup]="productForm" (ngSubmit)="onSubmit(productForm.value)">
+ 
+  <input id="productId" type="hidden" formControlName="productId">
+
+  <div>
+    <label for="name">
+      name
+    </label>
+    <input id="name" type="text" formControlName="name">
+  </div>
+
+  <div>
+    <label for="price">
+      price
+    </label>
+    <input id="price" type="text" formControlName="price">
+  </div>
+
+  <div>
+    <label for="description">
+      description
+    </label>
+    <input id="description" type="text" formControlName="description">
+  </div>
+
+  <button class="button" type="onSubmit">Update</button>
+  &nbsp;
+  <button (click)="addToCart(product)" type="button">Buy</button>
+</form>

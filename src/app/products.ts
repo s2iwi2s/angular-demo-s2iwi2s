@@ -1,4 +1,4 @@
-export const productsMap = [
+export const products = [
   {
     productId: 'Phone_XL', 
     name: 'Phone XL',

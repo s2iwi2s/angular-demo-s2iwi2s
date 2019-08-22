@@ -68,10 +68,10 @@ export class ProductDetailsComponent implements OnInit {
     for(var key in productData){
       this.product[key] = productData[key];
     }
-    if(productData.formAction == 'New'){
+    if(this.formAction == 'New'){
       products.push(this.product);
     }
-    
+    this.formAction = 'Update';
     console.warn('The product has been saved', this.product);
     window.alert('The product has been saved!');
   }

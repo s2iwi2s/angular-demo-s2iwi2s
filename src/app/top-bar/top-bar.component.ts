@@ -13,7 +13,6 @@ export class TopBarComponent implements OnInit {
   constructor(private cartService: CartService) {}
 
   ngOnInit() {
-    //this.doUpdateCount();
     this.cartService.change.subscribe(items => {
       this.cartCount = this.cartService.getItems().length;
     });

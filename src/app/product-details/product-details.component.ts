@@ -58,5 +58,7 @@ export class ProductDetailsComponent implements OnInit {
     }
     
     window.alert('The product has been saved!');
+    
+    console.warn('The product has been saved', this.product);
   }
 }

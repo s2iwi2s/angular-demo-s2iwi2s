@@ -1,6 +1,6 @@
 <h2>Products - <a [title]="'New'" [routerLink]="['/products', 'new']" class="button">
-      New
-    </a></h2> 
+		New
+	</a></h2>
 
 
 <!-- 
@@ -10,22 +10,25 @@ can be found in the LICENSE file at http://angular.io/license
 -->
 <!--
 -->
-<div *ngFor="let product of products">
 
-  <h3>
-    <a [title]="product.name + ' details'" [routerLink]="['/products', product.productId]">
-      {{ product.name }}
-    </a>
-    </h3>
-    
-    <p *ngIf="product.description">
-      Description: {{ product.description }}
-    </p>
-    
-    <button (click)="share()">Share</button>
-    
+<div class="row" *ngFor="let product of products">
+	<div class="col col-sm-12  px-4 py-2">
+		<h4>
+			<a [title]="product.name + ' details'" [routerLink]="['/products', product.productId]">
+				{{ product.name }}
+			</a>
+		</h4>
+
+		<p *ngIf="product.description" class="pl-2">
+			Description: {{ product.description }}
+		</p>
+
+		<button (click)="share()" class="button">Share</button>
+    &nbsp;
     <app-product-alerts
       [product]="product" 
       (notify)="onNotify()">
     </app-product-alerts>
+
+    </div>
 </div>

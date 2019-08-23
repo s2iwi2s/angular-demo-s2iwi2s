@@ -28,6 +28,8 @@ export class CartService {
 
   clearCart() {
     this.items = [];
+    
+    this.change.emit(this.items);
     return this.items;
   }
   

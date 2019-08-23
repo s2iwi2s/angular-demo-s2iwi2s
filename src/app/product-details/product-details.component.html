@@ -2,7 +2,7 @@
 
 <p></p>
 
-<p *ngIf="formAction=='Update'" class="button fancy-button"><button (click)="addToCart()" type="button">Buy</button></p>
+<p *ngIf="formAction=='Update'"><button (click)="addToCart()" type="button" class="btn btn-primary">Buy</button></p>
 
 
 <form [formGroup]="productForm" (ngSubmit)="onSubmit(productForm.value)">
@@ -43,15 +43,16 @@
         <td>{{ item.name }}</td>
         <td>{{ item.serial }}</td>
         <td class="table-col-action button fancy-button">
-          <a (click)="doRemoveProductItem(item.id)"><i class="material-icons">delete</i></a>
+          <a (click)="doRemoveProductItem(item.id)" ><i class="material-icons">delete</i></a>
         </td>
       </tr>
   </tbody>
 </table>
 
 <p class="button fancy-button">
-   <i class="material-icons" (click)="onSubmit(productForm.value)">send</i>
-   <i class="material-icons" (click)="onNewProduct()" type="button">open_in_new</i>
+   <a class="btn btn-primary" (click)="onSubmit(productForm.value)"><i class="material-icons" >send</i></a>
+   &nbsp;
+   <a class="btn btn-primary" (click)="onNewProduct()" ><i class="material-icons">open_in_new</i></a>
 </p>
 
 </form>

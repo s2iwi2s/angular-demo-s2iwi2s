@@ -19,7 +19,7 @@
 -->
 
 <form [formGroup]="productForm" (ngSubmit)="onSubmit(productForm.value)">
-  <input id="productId" type="hidden" formControlName="productId">
+  <input id="productId" type="text" formControlName="productId">
   <div>
     <label for="name">
       name
@@ -38,7 +38,6 @@
     </label>
     <input id="description" type="text" formControlName="description">
   </div>
-
 <p></p>
 <h3>Items <button (click)="doRemoveProductItem(item.id)" type="button">+</button></h3>
 
@@ -51,8 +50,8 @@
         <th class="table-col-action"></th>
       </tr>
   </thead>
-  <tbody *ngIf="product.items">
-      <tr *ngFor="let item of product.items">
+  <tbody *ngIf="currentProduct.items">
+      <tr *ngFor="let item of currentProduct.items">
         <td>{{ item.id }}</td>
         <td>{{ item.name }}</td>
         <td>{{ item.serial }}</td>

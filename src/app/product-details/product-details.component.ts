@@ -2,7 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
-import { products } from '../products';
+//import { products } from '../products';
+import { ProductService } from '../service/product.service';
 import { CartService } from '../service/cart.service';
 
 @Component({
@@ -11,87 +12,98 @@ import { CartService } from '../service/cart.service';
   styleUrls: ['./product-details.component.css']
 })
 export class ProductDetailsComponent implements OnInit {
-  product;
+  currentProduct;
   productForm;
   formAction;
-  lastProductId = 0;
 
   constructor(
     private route: ActivatedRoute,
+    private productService : ProductService,
     private cartService: CartService,
     //private topBarComponent: TopBarComponent, 
     private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
-    var lpid = 0;
-    var productsMap = {};
-    function createProductsMap(obj, idx){
-      productsMap[obj.productId] = obj;
-      lpid = obj.productId;
-    }
-
-    products.forEach(function(obj, idx){
-      productsMap[obj.productId] = obj;
-      lpid = obj.productId;
-    });
-    this.lastProductId = lpid;
-
     this.route.paramMap.subscribe(params => {
-        this.product = productsMap[params.get('productId')];
+        //this.product = productsMap[params.get('productId')];
+        var productId = params.get('productId');
+        this.currentProduct = this.productService.getProduct(productId);
     });
     
-    if(this.product){
+    console.info('ProductDetailsComponent.ngOnInit this.currentProduct =>', this.currentProduct);
+    if(this.currentProduct){
       this.formAction = 'Update';
       this.setProductForm();
     }else{
-      this.createNewProduct();
+      this.onNewProduct();
     }
+    console.log('ProductDetailsComponent.ngOnInit this.currentProduct', this.currentProduct);
   }
 
   setProductForm(){
-    this.productForm = this.formBuilder.group({
-      productId: this.product.productId,
-      name: this.product.name,
-      price: this.product.price,
-      description: this.product.description,
-      formAction: this.product.formAction
-    });
+    /*this.productForm = this.formBuilder.group({
+      productId: this.currentProduct.productId,
+      name: this.currentProduct.name,
+      price: this.currentProduct.price,
+      description: this.currentProduct.description,
+      items: this.currentProduct.items
+    });*/
+    this.productForm = this.formBuilder.group(this.currentProduct);
   }
   
   addToCart(product) {
-    this.cartService.addToCart(product);
+    this.cartService.addToCart(this.currentProduct);
     //window.alert('Your product has been added to the cart!');
   }
 
   onSubmit(productData){
     for(var key in productData){
-      this.product[key] = productData[key];
+      this.currentProduct[key] = productData[key];
     }
+    //this.currentProduct['productId'] = this.productService.incrementLastProductId();
+    
+
+    /*var products = this.productService.getProductList();
     if(this.formAction == 'New'){
-      products.push(this.product);
-    }
+      products.push(this.currentProduct);
+    }*/
+    this.productService.save(this.currentProduct);
+
     this.formAction = 'Update';
-    console.warn('The product has been saved', this.product);
+    //console.warn('The product has been saved', this.currentProduct);
     window.alert('The product has been saved!');
   }
+
   onNewProduct(){
-    this.createNewProduct();
-  }
-  
-  createNewProduct(){
     this.formAction = 'New';
-    this.lastProductId++;
-    
-    this.product = {
-      productId: this.lastProductId,
-      name: '',
-      price: '',
-      description: ''
-    };
+    this.currentProduct = this.createNewProduct();
     this.setProductForm();
   }
+
+  createNewProduct(){
+    return {
+      productId: this.productService.incrementLastProductId(),
+      name: '',
+      price: '',
+      description: '',
+      items: []
+    };
+  }
   doRemoveProductItem(itemId){
-    window.alert('Item removed: ' + itemId);
+    var pitems = this.currentProduct.items;
+    if(pitems){
+      var delIdx = -1;
+      pitems.forEach(function(item, idx){
+        if(item.id == itemId){
+          delIdx = idx;
+        }
+      });
+      
+      if(delIdx != -1){
+        pitems.splice(delIdx, 1);
+        window.alert('Item removed: ' + itemId);
+      } 
+    }
   }
 }

@@ -1,14 +1,14 @@
 <h3>Cart</h3>
 
 <p>
-  <a routerLink="/shipping">Shipping Prices</a>
+	<a routerLink="/shipping">Shipping Prices</a>
 </p>
 
 <div class="cart-item" *ngFor="let item of items; index as idx">
-  <span>{{ item.name }} </span>
+	<span>{{ item.name }} </span>
   <span>{{ item.price | currency }}</span>
   <a (click)="doRemoveItem(item.id)"><i class="material-icons">delete</i></a>
-</div>
+</div>  
 
 <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
   <div>

@@ -20,6 +20,7 @@ import { CartService } from './service/cart.service';
 import { CartComponent } from './cart/cart.component';
 import { ShippingComponent } from './shipping/shipping.component';
 import { LeftMenuComponent } from './left-menu/left-menu.component';
+import { ProductService } from './service/product.service';
 
 @NgModule({
   imports: [
@@ -50,7 +51,7 @@ import { LeftMenuComponent } from './left-menu/left-menu.component';
     LeftMenuComponent
   ],
   bootstrap: [ AppComponent ],
-  providers: [CartService]
+  providers: [CartService, ProductService]
 })
 export class AppModule { }
 

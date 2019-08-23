@@ -2,7 +2,7 @@
 
 <p></p>
 
-<p *ngIf="formAction=='Update'" class="button fancy-button"><button (click)="addToCart(product)" type="button">Buy</button></p>
+<p *ngIf="formAction=='Update'" class="button fancy-button"><button (click)="addToCart()" type="button">Buy</button></p>
 
 
 <form [formGroup]="productForm" (ngSubmit)="onSubmit(productForm.value)">
@@ -12,6 +12,7 @@
       name
     </label>
     <input id="name" type="text" formControlName="name" required>
+    
   </div>
   <div>
     <label for="price">

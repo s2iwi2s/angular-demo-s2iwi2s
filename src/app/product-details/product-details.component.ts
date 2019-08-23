@@ -54,21 +54,22 @@ export class ProductDetailsComponent implements OnInit {
       productId: this.currentProduct.productId,
       name: this.currentProduct.name,
       price: this.currentProduct.price,
-      description: this.currentProduct.description,
-      items: this.currentProduct.items
+      description: this.currentProduct.description
     });
     //this.productForm = this.formBuilder.group(this.currentProduct);
   }
   
-  addToCart(product) {
+  addToCart() {
     this.cartService.addToCart(this.currentProduct);
     //window.alert('Your product has been added to the cart!');
   }
 
   onSubmit(productData){
+    console.warn('ProductDetailsComponent.onSubmit productData => ', productData);
     for(var key in productData){
       this.currentProduct[key] = productData[key];
     }
+    console.warn('ProductDetailsComponent.onSubmit this.currentProduct => ', this.currentProduct);
     
     this.productService.save(this.currentProduct);
 
@@ -80,10 +81,6 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   showAlert(tle, msg){
-    /*const dialogRef = this.dialog.open(AlertComponent, {
-      width: '250px',
-      data: {title: tle, message: msg}
-    });*/
     this.dialog.open(AlertDialog, {
       data: {title: tle, message: msg}
     });

@@ -1,11 +1,16 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Inject, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
+import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 //import { products } from '../products';
 import { ProductService } from '../service/product.service';
 import { CartService } from '../service/cart.service';
+
+export interface DialogData {
+ title: '',
+ message: ''
+}
 
 @Component({
   selector: 'app-product-details',
@@ -79,6 +84,9 @@ export class ProductDetailsComponent implements OnInit {
       width: '250px',
       data: {title: tle, message: msg}
     });*/
+    this.dialog.open(AlertDialog, {
+      data: {title: tle, message: msg}
+    });
   }
 
   onNewProduct(){
@@ -112,4 +120,12 @@ export class ProductDetailsComponent implements OnInit {
       } 
     }
   }
+}
+
+@Component({
+  selector: 'dialog-data-example-dialog',
+  templateUrl: './alert-dialog.html',
+})
+export class AlertDialog {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) {}
 }

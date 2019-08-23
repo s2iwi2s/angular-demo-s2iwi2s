@@ -18,7 +18,7 @@ import { AppComponent } from './app.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductAlertsComponent } from './product-alerts/product-alerts.component';
-import { ProductDetailsComponent } from './product-details/product-details.component';
+import { ProductDetailsComponent, AlertDialog } from './product-details/product-details.component';
 import { CartService } from './service/cart.service';
 import { CartComponent } from './cart/cart.component';
 import { ShippingComponent } from './shipping/shipping.component';
@@ -50,10 +50,12 @@ import { ProductService } from './service/product.service';
     ProductListComponent,
     ProductAlertsComponent,
     ProductDetailsComponent,
+    AlertDialog,
     CartComponent,
     ShippingComponent,
     LeftMenuComponent
   ],
+  entryComponents: [AlertDialog],
   bootstrap: [ AppComponent ],
   providers: [CartService, ProductService]
 })

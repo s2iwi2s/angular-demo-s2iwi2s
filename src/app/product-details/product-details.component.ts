@@ -6,7 +6,6 @@ import { MatDialog } from '@angular/material/dialog';
 //import { products } from '../products';
 import { ProductService } from '../service/product.service';
 import { CartService } from '../service/cart.service';
-import { AlertComponent } from '../alert/alert.component';
 
 @Component({
   selector: 'app-product-details',
@@ -76,10 +75,10 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   showAlert(tle, msg){
-    const dialogRef = this.dialog.open(AlertComponent, {
+    /*const dialogRef = this.dialog.open(AlertComponent, {
       width: '250px',
       data: {title: tle, message: msg}
-    });
+    });*/
   }
 
   onNewProduct(){

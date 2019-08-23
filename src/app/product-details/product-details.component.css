@@ -1,0 +1,17 @@
+
+.table-data th{
+  background: lightblue;
+}
+.table-data td{
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+td.table-col-action, th.table-col-action{
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.table-col-action button {
+  padding: 2px 10px;
+}

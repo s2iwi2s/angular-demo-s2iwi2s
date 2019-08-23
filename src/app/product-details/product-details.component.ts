@@ -91,4 +91,7 @@ export class ProductDetailsComponent implements OnInit {
     };
     this.setProductForm();
   }
+  doRemoveProductItem(itemId){
+    window.alert('Item removed: ' + itemId);
+  }
 }

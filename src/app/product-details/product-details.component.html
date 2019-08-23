@@ -2,21 +2,8 @@
 
 <p></p>
 
-<p *ngIf="formAction=='Update'"><button (click)="addToCart(product)" type="button">Buy</button></p>
+<p *ngIf="formAction=='Update'" class="button fancy-button"><button (click)="addToCart(product)" type="button">Buy</button></p>
 
-<!--
-<div *ngIf="product">
-  <h3>{{ product.name }}</h3>
-  <h4>{{ product.price | currency }}</h4>
-  <p>{{ product.description }}</p>
-
-
-    <ul *ngIf="product.items">Product Items
-      <li *ngFor="let item of product.items">
-        {{item.id}} / {{item.name}}: {{item.serial}}</li>
-    </ul>
-</div>
--->
 
 <form [formGroup]="productForm" (ngSubmit)="onSubmit(productForm.value)">
   <input id="productId" type="text" formControlName="productId">
@@ -39,7 +26,8 @@
     <input id="description" type="text" formControlName="description">
   </div>
 <p></p>
-<h3>Items <button (click)="doRemoveProductItem(item.id)" type="button">+</button></h3>
+
+<h3>Items <span class="button fancy-button"><i class="material-icons">playlist_add</i></span></h3>
 
 <table class="table-data">
   <thead>
@@ -55,17 +43,16 @@
         <td>{{ item.id }}</td>
         <td>{{ item.name }}</td>
         <td>{{ item.serial }}</td>
-        <td class="table-col-action">
+        <td class="table-col-action button fancy-button">
           <a (click)="doRemoveProductItem(item.id)"><i class="material-icons">delete</i></a>
         </td>
       </tr>
   </tbody>
 </table>
 
-<p>
-  <button class="button" type="submit">Save</button>
-  &nbsp;
-  <button (click)="onNewProduct()" type="button">New</button>
+<p class="button fancy-button">
+   <i class="material-icons" (click)="onSubmit(productForm.value)">send</i>
+   <i class="material-icons" (click)="onNewProduct()" type="button">open_in_new</i>
 </p>
 
 </form>

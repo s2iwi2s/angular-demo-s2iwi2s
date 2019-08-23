@@ -1,4 +1,8 @@
 
+.table-data {
+  padding: 0px 0px;
+}
+
 .table-data th{
   background: lightblue;
 }

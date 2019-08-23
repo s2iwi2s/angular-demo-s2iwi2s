@@ -1,10 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 
 //import { products } from '../products';
 import { ProductService } from '../service/product.service';
 import { CartService } from '../service/cart.service';
+import { AlertComponent } from '../alert/alert.component';
 
 @Component({
   selector: 'app-product-details',
@@ -21,7 +23,9 @@ export class ProductDetailsComponent implements OnInit {
     private productService : ProductService,
     private cartService: CartService,
     //private topBarComponent: TopBarComponent, 
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    public dialog: MatDialog
+    ) {
   }
 
   ngOnInit() {
@@ -42,14 +46,14 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   setProductForm(){
-    /*this.productForm = this.formBuilder.group({
+    this.productForm = this.formBuilder.group({
       productId: this.currentProduct.productId,
       name: this.currentProduct.name,
       price: this.currentProduct.price,
       description: this.currentProduct.description,
       items: this.currentProduct.items
-    });*/
-    this.productForm = this.formBuilder.group(this.currentProduct);
+    });
+    //this.productForm = this.formBuilder.group(this.currentProduct);
   }
   
   addToCart(product) {
@@ -61,18 +65,21 @@ export class ProductDetailsComponent implements OnInit {
     for(var key in productData){
       this.currentProduct[key] = productData[key];
     }
-    //this.currentProduct['productId'] = this.productService.incrementLastProductId();
     
-
-    /*var products = this.productService.getProductList();
-    if(this.formAction == 'New'){
-      products.push(this.currentProduct);
-    }*/
     this.productService.save(this.currentProduct);
 
     this.formAction = 'Update';
     //console.warn('The product has been saved', this.currentProduct);
-    window.alert('The product has been saved!');
+    //window.alert('The product has been saved!');
+    
+    this.showAlert('Alert', 'The product has been saved');
+  }
+
+  showAlert(tle, msg){
+    /*const dialogRef = this.dialog.open(AlertComponent, {
+      width: '250px',
+      data: {title: tle, message: msg}
+    });*/
   }
 
   onNewProduct(){

@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { NgModule } from '@angular/core';
 
+import { MatDividerModule } from '@angular/material/divider';
+import { MatGridListModule } from '@angular/material/grid-list';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

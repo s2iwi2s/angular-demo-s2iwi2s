@@ -38,7 +38,10 @@ export class ProductService {
   }
 
   save(item){
-    products.push(item);
-    this.productsMap[item.productId] = item;
+    var p = this.productsMap[item.productId];
+    if(!p){
+      products.push(item);
+    }
+    //this.productsMap[item.productId] = item;
   }
 }

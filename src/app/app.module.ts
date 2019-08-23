@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
@@ -8,6 +9,8 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSidenavModule } from '@angular/material/sidenav';
+
+import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 
 //import { DemoMaterialModule } from './material-module';
 
@@ -21,6 +24,7 @@ import { CartComponent } from './cart/cart.component';
 import { ShippingComponent } from './shipping/shipping.component';
 import { LeftMenuComponent } from './left-menu/left-menu.component';
 import { ProductService } from './service/product.service';
+import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
   imports: [
@@ -29,6 +33,9 @@ import { ProductService } from './service/product.service';
     HttpClientModule,
     //DemoMaterialModule,
     MatBadgeModule,
+    MatDialogModule,
+    //MatDialogRef, 
+    //MAT_DIALOG_DATA,
     MatDividerModule,
     MatGridListModule,
     MatSidenavModule,
@@ -48,7 +55,8 @@ import { ProductService } from './service/product.service';
     ProductDetailsComponent,
     CartComponent,
     ShippingComponent,
-    LeftMenuComponent
+    LeftMenuComponent,
+    AlertComponent
   ],
   bootstrap: [ AppComponent ],
   providers: [CartService, ProductService]

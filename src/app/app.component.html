@@ -3,11 +3,8 @@
 <app-top-bar></app-top-bar>
 
 
-<mat-grid-list cols="2">
-  <mat-grid-tile><app-left-menu></app-left-menu></mat-grid-tile>
-  <mat-divider [vertical]="true"></mat-divider>
-  <mat-grid-tile colspan="1"><router-outlet></router-outlet></mat-grid-tile>
-</mat-grid-list>
+<router-outlet></router-outlet>
+
 <!--
 <mat-grid-list [cols]="2">
   <mat-grid-tile><app-left-menu></app-left-menu></mat-grid-tile>

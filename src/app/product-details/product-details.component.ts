@@ -101,6 +101,7 @@ export class ProductDetailsComponent implements OnInit {
       items: []
     };
   }
+  
   doRemoveProductItem(itemId){
     var pitems = this.currentProduct.items;
     if(pitems){

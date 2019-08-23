@@ -41,7 +41,7 @@ export class ProductService {
     var p = this.productsMap[item.productId];
     if(!p){
       products.push(item);
+      this.productsMap[item.productId] = item;
     }
-    //this.productsMap[item.productId] = item;
   }
 }

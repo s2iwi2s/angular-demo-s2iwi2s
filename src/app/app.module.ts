@@ -34,8 +34,6 @@ import { AlertComponent } from './alert/alert.component';
     //DemoMaterialModule,
     MatBadgeModule,
     MatDialogModule,
-    //MatDialogRef, 
-    //MAT_DIALOG_DATA,
     MatDividerModule,
     MatGridListModule,
     MatSidenavModule,

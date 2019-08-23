@@ -76,10 +76,10 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   showAlert(tle, msg){
-    /*const dialogRef = this.dialog.open(AlertComponent, {
+    const dialogRef = this.dialog.open(AlertComponent, {
       width: '250px',
       data: {title: tle, message: msg}
-    });*/
+    });
   }
 
   onNewProduct(){

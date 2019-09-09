@@ -20,7 +20,8 @@
   
   <div class="form-group">
     <label for="status">Status</label>
-     <select formControlName="status">
+     <select formControlName="status" class="form-control" id="status" placeholder="Enter status">
+       <option [ngValue]="null">&#91; Enter status &#93;</option>
        <option *ngFor="let stat of statusList" [ngValue]="stat.value">{{stat.name}}</option>
      </select>
     

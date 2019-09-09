@@ -21,6 +21,12 @@ export class ProductDetailsComponent implements OnInit {
   currentProduct;
   productForm;
   formAction;
+  statusList = [
+        { name: 'Open', value: '1' },
+        { name: 'In Progress', value: '2' },
+        { name: 'Complete', value: '3' },
+        { name: 'Deleted', value: '4' },
+    ];
 
   constructor(
     private route: ActivatedRoute,
@@ -54,7 +60,8 @@ export class ProductDetailsComponent implements OnInit {
       productId: this.currentProduct.productId,
       name: this.currentProduct.name,
       price: this.currentProduct.price,
-      description: this.currentProduct.description
+      description: this.currentProduct.description,
+      status: this.currentProduct.status
     });
     //this.productForm = this.formBuilder.group(this.currentProduct);
   }

@@ -5,70 +5,68 @@
 <p *ngIf="formAction=='Update'"><button (click)="addToCart()" type="button" class="btn btn-primary">Buy</button></p>
 
 <form [formGroup]="productForm" (ngSubmit)="onSubmit(productForm.value)">
-	<div class="row">
+<div class="row">
+    <div class="col">
+		<input id="productId" type="hidden" formControlName="productId">
 
-		<div class="col">
-			<input id="productId" type="hidden" formControlName="productId">
+		  <div class="form-group">
+			<label for="name">Name</label>
+			<input type="text" formControlName="name" class="form-control" id="name" placeholder="Enter name">
+		  </div>
+		  
+		  <div class="form-group">
+			<label for="price">Price</label>
+			<input type="text" formControlName="price" class="form-control" id="price" placeholder="Enter price">
+		  </div>
+		  
+		  <div class="form-group">
+			<label for="status">Status</label>
+			 <select formControlName="status" class="form-control" id="status" placeholder="Enter status">
+			   <option [ngValue]="null">&#91; Enter status &#93;</option>
+			   <option *ngFor="let stat of statusList" [ngValue]="stat.value">{{stat.name}}</option>
+			 </select>
+			
+			<ul>
+				<li *ngFor="let s of statusList">{{s.value + ' - ' + s.name}}</li>
+			</ul>
+		  </div>
+		 
+		  <div class="form-group">
+			<label for="description">
+			  Description
+			</label>
+			<input type="text" formControlName="description" class="form-control" id="description"  placeholder="Enter description">
+		  </div>
 
-			  <div class="form-group">
-				<label for="name">Name</label>
-				<input type="text" formControlName="name" class="form-control" id="name" placeholder="Enter name">
-			  </div>
-			  
-			  <div class="form-group">
-				<label for="price">Price</label>
-				<input type="text" formControlName="price" class="form-control" id="price" placeholder="Enter price">
-			  </div>
-			  
-			  <div class="form-group">
-				<label for="status">Status</label>
-				 <select formControlName="status" class="form-control" id="status" placeholder="Enter status">
-				   <option [ngValue]="null">&#91; Enter status &#93;</option>
-				   <option *ngFor="let stat of statusList" [ngValue]="stat.value">{{stat.name}}</option>
-				 </select>
-				
-				<ul>
-					<li *ngFor="let s of statusList">{{s.value + ' - ' + s.name}}</li>
-				</ul>
-			  </div>
-			 
-			  <div class="form-group">
-				<label for="description">
-				  Description
-				</label>
-				<input type="text" formControlName="description" class="form-control" id="description"  placeholder="Enter description">
-			  </div>
-		</div>
-
-		<div class="col">
-		  <h3>Items <span class="button fancy-button"><i class="material-icons">playlist_add</i></span></h3>
-			<table class="table">
-			  <thead>
-				  <tr>
-					<th>ID</th>
-					<th>Name</th>
-					<th>Serial</th>
-					<th class="table-col-action"></th>
-				  </tr>
-			  </thead>
-			  <tbody *ngIf="currentProduct.items">
-				  <tr *ngFor="let item of currentProduct.items">
-					<td>{{ item.id }}</td>
-					<td>{{ item.name }}</td>
-					<td>{{ item.serial }}</td>
-					<td class="table-col-action button fancy-button">
-					  <a (click)="doRemoveProductItem(item.id)" ><i class="material-icons">delete</i></a>
-					</td>
-				  </tr>
-			  </tbody>
-			</table>
-		</div>
-
+		
+    </div>
+    <div class="col">
+      <h3>Items <a class="btn btn-primary button fancy-button" (click)="doAddItem()"><i class="material-icons">playlist_add</i></a></h3>
+		<table class="table">
+		  <thead>
+			  <tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Serial</th>
+				<th class="table-col-action"></th>
+			  </tr>
+		  </thead>
+		  <tbody *ngIf="currentProduct.items">
+			  <tr *ngFor="let item of currentProduct.items">
+				<td>{{ item.id }}</td>
+				<td>{{ item.name }}</td>
+				<td>{{ item.serial }}</td>
+				<td class="table-col-action button fancy-button">
+				  <a (click)="doRemoveProductItem(item.id)" ><i class="material-icons">delete</i></a>
+				</td>
+			  </tr>
+		  </tbody>
+		</table>
 	</div>
-  
-	<p class="button fancy-button">
-	   <a class="btn btn-primary" (click)="onSubmit(productForm.value)"><i class="material-icons" >send</i></a>
-	   &nbsp;
-	   <a class="btn btn-primary" (click)="onNewProduct()" ><i class="material-icons">open_in_new</i></a>
-	</p>
-</form>
+</div>
+<p class="button fancy-button">
+   <a class="btn btn-primary" (click)="onSubmit(productForm.value)"><i class="material-icons" >send</i></a>
+   &nbsp;
+   <a class="btn btn-primary" (click)="onNewProduct()" ><i class="material-icons">open_in_new</i></a>
+</p>
+ </form>

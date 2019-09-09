@@ -125,6 +125,9 @@ export class ProductDetailsComponent implements OnInit {
       } 
     }
   }
+  doAddItem(){
+    this.currentProduct.items.push({id:'0', name:'', serial:''});
+  }
 }
 
 @Component({

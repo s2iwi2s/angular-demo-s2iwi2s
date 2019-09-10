@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<weblogic-web-app xmlns="http://xmlns.oracle.com/weblogic/weblogic-web-app">
+	<context-root>springmvc</context-root>
+	<container-descriptor>
+		<prefer-application-packages>
+			<package-name>org.slf4j.*</package-name>
+			<package-name>com.fasterxml.classmate.*</package-name>
+			<package-name>com.fasterxml.jackson.*</package-name>
+			<package-name>javax.annotation.*</package-name>
+			<package-name>javax.annotation.security.*</package-name>
+			<package-name>javax.annotation.sql.*</package-name>
+			<package-name>org.hibernate.validator.*</package-name>
+			<package-name>javax.persistence.*</package-name>
+			<package-name>javax.validation.*</package-name>
+			<package-name>javax.validation.bootstrap.*</package-name>
+			<package-name>javax.validation.constraints.*</package-name>
+			<package-name>javax.validation.constraintvalidation.*</package-name>
+			<package-name>javax.validation.executable.*</package-name>
+			<package-name>javax.validation.groups.*</package-name>
+			<package-name>javax.validation.metadata.*</package-name>
+			<package-name>javax.validation.spi.*</package-name>
+			<package-name>org.aopalliance.aop.*</package-name>
+			<package-name>org.aopalliance.intercept.*</package-name>
+			<package-name>org.hibernate.validator.*</package-name>
+			<package-name>org.jboss.logging.*</package-name>
+			<package-name>org.springframework.*</package-name>
+			
+		</prefer-application-packages>
+	</container-descriptor>
+	
+    <library-ref>
+        <library-name>jstl</library-name>
+        <specification-version>1.2</specification-version>
+        <implementation-version>1.2.0.1</implementation-version>
+        <exact-match>true</exact-match>
+    </library-ref>
+
+	<jsp-descriptor>
+		<page-check-seconds>0</page-check-seconds>
+	</jsp-descriptor>
+</weblogic-web-app>

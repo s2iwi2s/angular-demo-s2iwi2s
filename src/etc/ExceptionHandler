@@ -1,0 +1,41 @@
+;
+;
+@ControllerAdvice(annotations = Controller.class)
+@Order(2)
+public class GlobalExceptionHandler {
+	public static final String DEFAULT_ERROR_VIEW = "default/error";
+
+	@ExceptionHandler(Exception.class)
+	public ModelAndView handleControllerException(HttpServletRequest request, HttpServletResponse response, Exception ex) throws Exception {
+		if (AnnotationUtils.findAnnotation(ex.getClass(), ResponseStatus.class) != null)
+			throw ex;
+
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName(DEFAULT_ERROR_VIEW);
+		;
+		;
+		return modelAndView;
+	}
+}
+
+-------
+
+@ControllerAdvice(annotations = RestController.class)
+@Order(1)
+public class GlobalRestExceptionHandler {
+
+	@ExceptionHandler(Exception.class)
+	@ResponseStatus(HttpStatus.SERVICE_UNAVAILABLE)
+	public final ResponseEntity<ErrorResponse> handleRestControllerException(HttpServletRequest request, Exception ex) {
+		System.out.println("GlobalRestExceptionHandler here...");
+		;
+		;
+		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+	}
+
+	/*
+	 * @ExceptionHandler(value = {Exception.class}) public
+	 * ResponseEntity<Object> exception(Exception exception) { return new
+	 * ResponseEntity<>(exception, HttpStatus.BAD_REQUEST); }
+	 */
+}

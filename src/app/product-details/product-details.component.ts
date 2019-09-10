@@ -121,11 +121,15 @@ export class ProductDetailsComponent implements OnInit {
       
       if(delIdx != -1){
         pitems.splice(delIdx, 1);
-        window.alert('Item removed: ' + itemId);
+        //window.alert('Item removed: ' + itemId);
       } 
     }
   }
   doAddItem(){
+    if(!this.currentProduct.items){
+      this.currentProduct.items = [];
+    }
+    
     this.currentProduct.items.push({id:'0', name:'', serial:''});
   }
 }

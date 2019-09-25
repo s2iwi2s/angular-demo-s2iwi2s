@@ -1,12 +1,9 @@
 
-<a [routerLink]="['/']">
-  <h1>Demo</h1>
-</a>
-
-<a [routerLink]="['/cart']" class="button fancy-button"  >
-  <i class="material-icons" [matBadge]="cartCount" matBadgePosition="after"  matBadgeOverlap="false" matBadgeColor="accent">shopping_cart</i>
-</a>
-
+<div class="row">
+  <div class="col"><a [routerLink]="['/']">
+  <h1>Demo</h1></a></div>
+  <div class="col"><a [routerLink]="['/cart']" class="material-icons" [matBadge]="cartCount" matBadgePosition="after"  matBadgeOverlap="false" matBadgeColor="accent">shopping_cart</a>
+  
 <!-- 
 Copyright Google LLC. All Rights Reserved.
 Use of this source code is governed by an MIT-style license that

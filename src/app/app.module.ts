@@ -26,6 +26,7 @@ import { LeftMenuComponent } from './left-menu/left-menu.component';
 import { ProductService } from './service/product.service';
 import { ModalComponent } from './modal/modal.component';
 
+
 @NgModule({
   imports: [
     BrowserModule,

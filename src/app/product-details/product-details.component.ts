@@ -150,7 +150,7 @@ export class ProductDetailsComponent implements OnInit {
 
 @Component({
   selector: 'alert-dialog',
-  templateUrl: './alert-dialog.html',
+  templateUrl: '../common/alert-dialog.html',
 })
 export class AlertDialog {
   constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) {}

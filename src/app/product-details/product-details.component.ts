@@ -134,10 +134,10 @@ export class ProductDetailsComponent implements OnInit {
       this.currentProduct.items = [];
     }
     this.currentItemId--;
-    this.currentProduct.items.push({id:this.currentItemId, name:'', serial:''});
+    
     //$('#alertModalDialog').modal('show');
     //this.showAlert('Alert!','showAlert');
-    this.showItemDialog('12','test', 'ASD-123-YUI');
+    this.showItemDialog(this.currentItemId,'test', 'ASD-123-YUI');
   }
   
   showItemDialog(itemId, itemName, itemSerial){
@@ -148,6 +148,10 @@ export class ProductDetailsComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('Dialog result:', result); 
+      this.currentProduct.items.push({
+        id:result.id, 
+        name: result.name, 
+        serial: result.serial});
     });
   }
 

@@ -6,6 +6,7 @@ import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 //import { products } from '../products';
 import { ProductService } from '../service/product.service';
 import { CartService } from '../service/cart.service';
+//import * as $ from 'jquery';
 
 export interface DialogData {
  title: '',
@@ -34,7 +35,8 @@ export class ProductDetailsComponent implements OnInit {
     private cartService: CartService,
     //private topBarComponent: TopBarComponent, 
     private formBuilder: FormBuilder,
-    public dialog: MatDialog
+    public alertDialog: MatDialog,
+    public itemDialog: MatDialog
     ) {
   }
 
@@ -88,10 +90,11 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   showAlert(tle, msg){
-    this.dialog.open(AlertDialog, {
+    this.alertDialog.open(AlertDialog, {
       data: {title: tle, message: msg}
     });
   }
+  
 
   onNewProduct(){
     this.formAction = 'New';
@@ -131,13 +134,32 @@ export class ProductDetailsComponent implements OnInit {
     }
     
     this.currentProduct.items.push({id:'0', name:'', serial:''});
+    //$('#alertModalDialog').modal('show');
+    this.showAlert('Alert!','showAlert');
+    this.showItemDialog('Alert!','showItemDialog');
   }
+  
+
+  showItemDialog(tle, msg){
+    this.itemDialog.open(ItemDialog, {
+      data: {title: tle, message: msg}
+    });
+  }
+  
 }
 
 @Component({
-  selector: 'dialog-data-example-dialog',
+  selector: 'alert-dialog',
   templateUrl: './alert-dialog.html',
 })
 export class AlertDialog {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+}
+
+@Component({
+  selector: 'item-dialog',
+  templateUrl: './item-dialog.html',
+})
+export class ItemDialog {
   constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) {}
 }

@@ -24,6 +24,7 @@ import { CartComponent } from './cart/cart.component';
 import { ShippingComponent } from './shipping/shipping.component';
 import { LeftMenuComponent } from './left-menu/left-menu.component';
 import { ProductService } from './service/product.service';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   imports: [
@@ -53,7 +54,8 @@ import { ProductService } from './service/product.service';
     AlertDialog,
     CartComponent,
     ShippingComponent,
-    LeftMenuComponent
+    LeftMenuComponent,
+    ModalComponent
   ],
   entryComponents: [AlertDialog],
   bootstrap: [ AppComponent ],

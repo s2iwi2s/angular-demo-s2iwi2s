@@ -28,7 +28,6 @@ export class ProductDetailsComponent implements OnInit {
   currentProduct;
   productForm;
   formAction;
-  currentItemId = 0;
   statusList = [
         { name: 'Open', value: '1' },
         { name: 'In Progress', value: '2' },
@@ -133,11 +132,11 @@ export class ProductDetailsComponent implements OnInit {
     if(!this.currentProduct.items){
       this.currentProduct.items = [];
     }
-    this.currentItemId--;
+    var itemId = this.productService.incrementNewItemId();
     
     //$('#alertModalDialog').modal('show');
     //this.showAlert('Alert!','showAlert');
-    this.showItemDialog(this.currentItemId,'test', 'ASD-123-YUI'); 
+    this.showItemDialog(itemId,'test', 'ASD-123-YUI'); 
   }
   
   showItemDialog(itemId, itemName, itemSerial){

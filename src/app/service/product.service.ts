@@ -6,6 +6,7 @@ export class ProductService {
   productsMap = {};
 
   lastProductId;
+  newItemId = 0;
 
   constructor() {
     var lpid;
@@ -24,7 +25,7 @@ export class ProductService {
   }
 
   incrementLastProductId(){
-    return '' + (++this.lastProductId);
+    return '' + (++this.lastProductId); 
   }
 
   getProduct(id){
@@ -35,6 +36,9 @@ export class ProductService {
   getProductList(){
     console.info('ProductService.getProductList =>', products);
     return products;
+  }
+  incrementNewItemId(){
+    return --this.newItemId;
   }
 
   save(item){

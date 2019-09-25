@@ -137,7 +137,7 @@ export class ProductDetailsComponent implements OnInit {
     
     //$('#alertModalDialog').modal('show');
     //this.showAlert('Alert!','showAlert');
-    this.showItemDialog(this.currentItemId,'test', 'ASD-123-YUI');
+    this.showItemDialog(this.currentItemId,'test', 'ASD-123-YUI'); 
   }
   
   showItemDialog(itemId, itemName, itemSerial){

@@ -8,9 +8,15 @@ import { ProductService } from '../service/product.service';
 import { CartService } from '../service/cart.service';
 //import * as $ from 'jquery';
 
-export interface DialogData {
- title: '',
- message: ''
+export interface AlertDialogData {
+  title: '',
+  message: ''
+}
+
+export interface ItemDialogData {
+  id: '',
+  name: '',
+  serial: ''
 }
 
 @Component({
@@ -22,6 +28,7 @@ export class ProductDetailsComponent implements OnInit {
   currentProduct;
   productForm;
   formAction;
+  currentItemId = 0;
   statusList = [
         { name: 'Open', value: '1' },
         { name: 'In Progress', value: '2' },
@@ -88,12 +95,6 @@ export class ProductDetailsComponent implements OnInit {
     
     this.showAlert('Alert', 'The product has been saved');
   }
-
-  showAlert(tle, msg){
-    this.alertDialog.open(AlertDialog, {
-      data: {title: tle, message: msg}
-    });
-  }
   
 
   onNewProduct(){
@@ -132,34 +133,39 @@ export class ProductDetailsComponent implements OnInit {
     if(!this.currentProduct.items){
       this.currentProduct.items = [];
     }
-    
-    this.currentProduct.items.push({id:'0', name:'', serial:''});
+    this.currentItemId--;
+    this.currentProduct.items.push({id:this.currentItemId, name:'', serial:''});
     //$('#alertModalDialog').modal('show');
-    this.showAlert('Alert!','showAlert');
-    this.showItemDialog('Alert!','showItemDialog');
+    //this.showAlert('Alert!','showAlert');
+    this.showItemDialog('12!','23', '56');
   }
   
 
-  showItemDialog(tle, msg){
+  showItemDialog(itemId, itemName, itemSerial){
     this.itemDialog.open(ItemDialog, {
+      data: {id: itemId,
+        name: itemName,
+        serial: itemSerial}
+    });
+  }
+
+  showAlert(tle, msg){
+    this.alertDialog.open(AlertDialog, {
       data: {title: tle, message: msg}
     });
   }
-  
 }
 
 @Component({
   selector: 'alert-dialog',
   templateUrl: '../common/alert-dialog.html',
-})
-export class AlertDialog {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+}) export class AlertDialog {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: AlertDialogData) {}
 }
 
 @Component({
   selector: 'item-dialog',
   templateUrl: './item-dialog.html',
-})
-export class ItemDialog {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+}) export class ItemDialog {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: ItemDialogData) {}
 }

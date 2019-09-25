@@ -1,4 +1,4 @@
-<h2>Products - <a [title]="'New'" [routerLink]="['/products', 'new']" class="button">
+<h2 class="text-truncate">Products - <a [title]="'New'" [routerLink]="['/products', 'new']" class="button">
 		New
 	</a></h2>
 
@@ -11,9 +11,9 @@ can be found in the LICENSE file at http://angular.io/license
 <!--
 -->
 
-<div class="row" *ngFor="let product of products">
-	<div class="col col-sm-12  px-4 py-2">
-		<h4>
+<div class="row pl-2" *ngFor="let product of products">
+	<div class="col col-sm-12  px-4 py-2 pl-2">
+		<h4 class="text-truncate">
 			<a [title]="product.name + ' details'" [routerLink]="['/products', product.productId]">
 				{{ product.name }}
 			</a>

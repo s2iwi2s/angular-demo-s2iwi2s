@@ -1,7 +1,7 @@
 import { Component, Input, Inject, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 //import { products } from '../products';
 import { ProductService } from '../service/product.service';
@@ -137,15 +137,17 @@ export class ProductDetailsComponent implements OnInit {
     this.currentProduct.items.push({id:this.currentItemId, name:'', serial:''});
     //$('#alertModalDialog').modal('show');
     //this.showAlert('Alert!','showAlert');
-    this.showItemDialog('12!','23', '56');
+    this.showItemDialog('12','test', 'ASD-123-YUI');
   }
   
-
   showItemDialog(itemId, itemName, itemSerial){
-    this.itemDialog.open(ItemDialog, {
+    const dialogRef = this.itemDialog.open(ItemDialog, {
       data: {id: itemId,
         name: itemName,
         serial: itemSerial}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Dialog result:', result); 
     });
   }
 
@@ -167,5 +169,21 @@ export class ProductDetailsComponent implements OnInit {
   selector: 'item-dialog',
   templateUrl: './item-dialog.html',
 }) export class ItemDialog {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: ItemDialogData) {}
+  itemForm;
+
+  constructor(public dialogRef: MatDialogRef<ItemDialog>, private formBuilder: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: ItemDialogData) {
+    this.itemForm = this.formBuilder.group({
+      id: this.data.id,
+      name: this.data.name,
+      serial: this.data.serial
+    });
+  }
+
+  closeDialog() {
+    this.data.id = this.itemForm.id;
+    this.data.name = this.itemForm.name;
+    this.data.serial = this.itemForm.serial;
+
+    this.dialogRef.close(this.itemForm.value);
+  }
 }

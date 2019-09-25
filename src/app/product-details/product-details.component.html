@@ -1,4 +1,4 @@
-<h2>Product Details - {{formAction}}</h2>
+<h2 class="text-truncate">Product Details - {{formAction}}</h2>
 <hr>
 
 
@@ -53,9 +53,9 @@
 		  </thead>
 		  <tbody *ngIf="currentProduct.items">
 			  <tr *ngFor="let item of currentProduct.items">
-				<td>{{ item.id }}</td>
-				<td>{{ item.name }}</td>
-				<td>{{ item.serial }}</td>
+				<td class="text-nowrap">{{ item.id }}</td>
+				<td class="text-nowrap">{{ item.name }}</td>
+				<td class="text-nowrap">{{ item.serial }}</td>
 				<td class="table-col-action button fancy-button">
 				  <a (click)="doRemoveProductItem(item.id)" ><i class="material-icons">delete</i></a>
 				</td>

@@ -19,7 +19,18 @@
   <span>{{ item.price | currency }}</span>
   <a (click)="doRemoveItem(item.id)" class="button fancy-button"><i class="material-icons">delete</i></a>
   -->
-</div>  
+</div>  <hr>
+<div class="row">
+  <div class="col col-sm-3">
+      Total
+  </div>
+  <div class="col col-sm-8">
+      {{ totalPrice | currency }}
+  </div>
+  <div class="col col-sm-1">
+      
+  </div>
+</div>
 <hr>
 <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
   

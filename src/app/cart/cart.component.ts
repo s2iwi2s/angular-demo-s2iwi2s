@@ -10,6 +10,7 @@ import { CartService } from '../service/cart.service';
 })
 export class CartComponent implements OnInit {
   items;
+  totalPrice = 0;
   checkoutForm;
 
   constructor(private cartService: CartService,
@@ -19,6 +20,9 @@ export class CartComponent implements OnInit {
       name: '',
       address: ''
     });
+    this.items.forEach((item)=>{
+      this.totalPrice += item.price;
+    })
   }
 
   ngOnInit() {

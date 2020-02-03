@@ -20,9 +20,7 @@ export class CartComponent implements OnInit {
       name: '',
       address: ''
     });
-    this.items.forEach((item)=>{
-      this.totalPrice += item.price;
-    })
+    this.doCompute();
   }
 
   ngOnInit() {
@@ -38,5 +36,12 @@ export class CartComponent implements OnInit {
   
   doRemoveItem(idx){
     this.cartService.removeToCart(idx);
+    this.doCompute();
+  }
+  doCompute(){
+    this.totalPrice = 0;
+    this.items.forEach((item) => {
+      this.totalPrice += item.price;
+    })
   }
 }

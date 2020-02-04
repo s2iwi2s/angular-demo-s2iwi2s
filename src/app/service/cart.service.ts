@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CartService {
   items = [];
+  currCartId = 0;
   @Output() change: EventEmitter<any> = new EventEmitter();
 
   constructor(
@@ -13,12 +14,20 @@ export class CartService {
   ) {}
   
   addToCart(product) {
-    this.items.push(product);
+    this.items.push({
+      cartId: this.currCartId++,
+      product: product
+    });
     this.change.emit(this.items);
   }
 
   removeToCart(idx){
-    this.items.splice(idx, 1);
+    for(let i = 0; i< this.items.length  ;i ++){
+      if(this.items[i].cartId == idx){
+        this.items.splice(i, 1);
+        break;
+      }
+    }
     this.change.emit(this.items);
   }
 

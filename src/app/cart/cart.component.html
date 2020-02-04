@@ -6,13 +6,13 @@
 
 <div class="row" *ngFor="let item of items; index as idx">
 	<div class="col col-sm-3">
-		{{ item.name }}
+		{{ item.product.name }}
 	</div>
 	<div class="col col-sm-1 text-right">
-		${{ item.price }}
+		${{ item.product.price }}
 	</div>
 	<div class="col col-sm-8">
-		<a (click)="doRemoveItem(item.id)" class="button fancy-button"><i class="material-icons">delete</i></a>
+		<a (click)="doRemoveItem(item.cartId)" class="button fancy-button"><i class="material-icons">delete</i></a>
 	</div>
 	<!--
 	<span>{{ item.name }} </span>

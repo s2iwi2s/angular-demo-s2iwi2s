@@ -14,8 +14,8 @@ export interface AlertDialogData {
 }
 
 export interface ItemDialogData {
-  id: '',
-  name: '',
+  id: ''
+  name: ''
   serial: ''
 }
 
